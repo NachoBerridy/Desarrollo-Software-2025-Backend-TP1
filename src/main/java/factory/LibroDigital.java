@@ -1,18 +1,11 @@
 package main.java.factory;
 
-public class LibroDigital extends Libro {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-    public LibroDigital(String titulo, String autor) {
-      super(titulo, autor);
-    }
-
-    @Override
-    public String getTitulo() {
-        return titulo;
-    }
-
-    @Override
-    public String getAutor() {
-        return autor;
-    }
+@Getter
+@AllArgsConstructor
+public class LibroDigital implements Libro {
+    private String titulo;
+    private String autor;
 }
