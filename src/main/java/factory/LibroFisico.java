@@ -1,18 +1,11 @@
 package main.java.factory;
 
-public class LibroFisico extends Libro{
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-    public LibroFisico(String titulo, String autor) {
-      super(titulo, autor);
-    }
-
-    @Override
-    public String getTitulo() {
-        return titulo;
-    }
-
-    @Override
-    public String getAutor() {
-        return autor;
-    }
+@Getter
+@AllArgsConstructor
+public class LibroFisico implements Libro {
+    private String titulo;
+    private String autor;
 }
