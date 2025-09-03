@@ -8,6 +8,15 @@ import main.java.singleton.Database;
 
 public class Main {
 
+    private static AbstractFactory seleccionarFactory(String tipoUsuario) {
+        if ("admin".equalsIgnoreCase(tipoUsuario)) {
+            return new AdminFactory();
+        } else if ("usuario".equalsIgnoreCase(tipoUsuario)) {
+            return new UsuarioFactory();
+        }
+        throw new IllegalArgumentException("No se puede seleccionar un tipo de usuario." + tipoUsuario);
+    }
+
     public static void main(String[] args) {
 
         // probar singleton
@@ -36,17 +45,6 @@ public class Main {
         System.out.println("Metodo de envio: " + envio.tipo());
         System.out.println("Días estimados:  " + envio.diasEstimados(distancia));
         System.out.println("Costo estimado: $" + envio.costo(peso, distancia));
-
-    }
-
-    private static AbstractFactory seleccionarFactory(String tipoUsuario) {
-        if ("admin".equalsIgnoreCase(tipoUsuario)) {
-            return new AdminFactory();
-        }
-        if ("usuario".equalsIgnoreCase(tipoUsuario)) {
-            return new UsuarioFactory();
-        }
-        throw new IllegalArgumentException("No se puede seleccionar un tipo de usuario." + tipoUsuario);
 
         // probar factory
         Libro libroFisico = LogisticaLibro.crearLibro("fisico", "El Quijote", "Cervantes");
