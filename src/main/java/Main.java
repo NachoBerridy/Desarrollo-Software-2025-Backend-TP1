@@ -4,6 +4,7 @@ import main.java.abstractfactory.*;
 import main.java.builder.Usuario;
 import main.java.factory.Libro;
 import main.java.factory.LogisticaLibro;
+import main.java.prototype.Prestamo;
 import main.java.singleton.Database;
 
 public class Main {
@@ -85,6 +86,54 @@ public class Main {
 
         System.out.println("--- BUILDER TERMINADO ---\n");
         // ========================= BUILDER END =========================
+
+        // ========================= PROTOTYPE START =========================
+        System.out.println("\n--- PROBANDO PROTOTYPE ---");
+        try {
+
+            // Original object
+            System.out.println("Creando un préstamo original...");
+            Prestamo prestamoOriginal = new Prestamo("Carlos Tevez", "El Principito", "01/10/2023", "15/10/2023");
+
+            // Shallow copy
+            System.out.println("Creando una copia (shallow) del préstamo original...");
+            Prestamo prestamoCopiaShallow = prestamoOriginal.clone();
+
+            // Deep copy
+            System.out.println("Creando una copia (deep) del préstamo original...");
+            Prestamo prestamoCopiaDeep = prestamoOriginal.clone(true);
+
+            System.out.println("\n Todos los préstamos fueron copiados con el mismo usuario:");
+            System.out.println(
+                    "Préstamo original: " + prestamoOriginal.getUsuario() + " - " + prestamoOriginal.getLibro());
+            System.out.println("Préstamo shallow copy: " + prestamoCopiaShallow.getUsuario() + " - "
+                    + prestamoCopiaShallow.getLibro());
+            System.out.println(
+                    "Préstamo deep copy: " + prestamoCopiaDeep.getUsuario() + " - " + prestamoCopiaDeep.getLibro());
+
+            prestamoCopiaShallow.setUsuario("Leonel Messi"); // Change user in shallow copy
+            prestamoCopiaDeep.setUsuario("Sergio Agüero"); // Change user in deep copy
+
+            System.out.println("\n Todos los préstamos ahora pertenecen a usuarios distintos:");
+            System.out.println(
+                    "Préstamo original: " + prestamoOriginal.getUsuario() + " - " + prestamoOriginal.getLibro());
+            System.out.println("Préstamo shallow copy: " + prestamoCopiaShallow.getUsuario() + " - "
+                    + prestamoCopiaShallow.getLibro());
+            System.out.println(
+                    "Préstamo deep copy: " + prestamoCopiaDeep.getUsuario() + " - " + prestamoCopiaDeep.getLibro());
+
+            System.out.println("\nEs el prestamo original igual a su shallow copy? "
+                    + (prestamoOriginal == prestamoCopiaShallow ? "SI" : "NO"));
+            System.out.println("Es el prestamo original igual a su deep copy? "
+                    + (prestamoOriginal == prestamoCopiaDeep ? "SI" : "NO"));
+            System.out.println("Es la shallow copy igual a la deep copy? "
+                    + (prestamoCopiaShallow == prestamoCopiaDeep ? "SI" : "NO"));
+
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n--- PROTOTYPE TERMINADO ---\n");
+        // ========================= PROTOTYPE END =========================
 
     }
 }
