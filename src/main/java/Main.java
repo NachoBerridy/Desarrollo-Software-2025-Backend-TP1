@@ -7,6 +7,16 @@ import main.java.factory.LogisticaLibro;
 import main.java.prototype.Prestamo;
 import main.java.singleton.Database;
 
+
+//Main Tester
+// */
+// * Se prueban los patrones de diseño:
+// * - Singleton
+// * - Factory Method
+// * - Abstract Factory
+// * - Builder
+// * - Prototype
+
 public class Main {
 
     private static AbstractFactory seleccionarFactory(String tipoUsuario) {
@@ -65,7 +75,6 @@ public class Main {
 
         // ========================= BUILDER START =========================
         System.out.println("\n--- PROBANDO BUILDER ---");
-
         Usuario usuario1 = Usuario.builder()
                 .nombre("Miguel Borja")
                 .email("costillares@gmail.com")
@@ -80,6 +89,27 @@ public class Main {
                 .direccion("Sección 'casi gol' de la Bombonera 321")
                 .fechaNacimiento("14/02/1987")
                 .build();
+
+
+
+        // SIN LOMBOK
+
+//        Usuario usuario1 =  new Usuario.Builder().
+//                nombre("Miguel Borja")
+//                .email("costillares@gmail.com")
+//                .direccion("Area chica del Monumental 123")
+//                .telefono("23412341")
+//                .fechaNacimiento("26/01/1993")
+//                .build();
+//
+//        Usuario usuario2 = new Usuario.Builder()
+//                .nombre("Edinson Cavani")
+//                .email("cavani@boca.com")
+//                .direccion("Sección 'casi gol' de la Bombonera 321")
+//                .fechaNacimiento("14/02/1987")
+//                .build();
+
+
 
         System.out.println("Ejemplo usuario 1: " + usuario1);
         System.out.println("Ejemplo usuario 2: " + usuario2);
@@ -137,3 +167,62 @@ public class Main {
 
     }
 }
+
+/*
+
+public class Main {
+    public static void main(String[] args) {
+        try{
+        // Parte 1 – Singleton
+        System.out.println("=== Singleton ===");
+        Database db1 = Database.getInstance();
+
+        // Parte 2 – Factory Method
+        System.out.println("\n=== Factory Method ===");
+        Libro libroFisico = LogisticaLibro.crearLibro("fisico", "El Quijote", "Cervantes");
+        Libro libroDigital = LogisticaLibro.crearLibro("digital", "1984", "Orwell");
+        db1.addLibro(libroFisico);
+        db1.addLibro(libroDigital);
+        for (Libro l : db1.getLibros()) {
+            System.out.println("Libro: " + l.getTitulo() + " | Tipo: " + l.getClass().getSimpleName());
+        }
+
+        // Parte 3 – Abstract Factory
+        System.out.println("\n=== Abstract Factory ===");
+        AbstractFactory adminFactory = new AdminFactory();
+        InterfazUI adminUI = adminFactory.crearUI();
+        MetodoEnvio envioExpress = adminFactory.crearEnvio();
+        adminUI.render();
+        System.out.println("Método de envío: " + envioExpress.tipo());
+
+        AbstractFactory usuarioFactory = new UsuarioFactory();
+        InterfazUI usuarioUI = usuarioFactory.crearUI();
+        MetodoEnvio envioNormal = usuarioFactory.crearEnvio();
+        usuarioUI.render();
+        System.out.println("Método de envío: " + envioNormal.tipo());
+
+        // Parte 4 – Builder
+        System.out.println("\n=== Builder ===");
+        Usuario usuario1 = Usuario.builder().nombre("Ana").email("ana@mail.com").telefono("123456").build();
+        Usuario usuario2 = Usuario.builder().nombre("Luis").direccion("Calle Falsa 123").fechaNacimiento("01/01/2000").build();
+        System.out.println(usuario1);
+        System.out.println(usuario2);
+
+        // Parte 5 – Prototype
+        System.out.println("\n=== Prototype ===");
+        Prestamo prestamoOriginal = new Prestamo(usuario1.getNombre(), libroFisico.getTitulo(), "10/06/2024", "20/06/2024");
+        Prestamo prestamoClon1 = prestamoOriginal.clone();
+        prestamoClon1.setFechaFin("25/06/2024");
+        Prestamo prestamoClon2 = prestamoOriginal.clone(true);
+        prestamoClon2.setUsuario(usuario2.getNombre());
+        System.out.println("Original: " + prestamoOriginal.getUsuario() + " | " + prestamoOriginal.getLibro() + " | " + prestamoOriginal.getFechaFin());
+        System.out.println("Clon 1: " + prestamoClon1.getUsuario() + " | " + prestamoClon1.getLibro() + " | " + prestamoClon1.getFechaFin());
+        System.out.println("Clon 2: " + prestamoClon2.getUsuario() + " | " + prestamoClon2.getLibro() + " | " + prestamoClon2.getFechaFin());
+    }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+
+*/
