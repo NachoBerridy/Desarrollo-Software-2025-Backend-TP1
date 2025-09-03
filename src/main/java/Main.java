@@ -19,24 +19,37 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // probar singleton
+        // ========================= SINGLETON START =========================
+        System.out.println("\n--- PROBANDO SINGLETON ---");
+
         Database db = Database.getInstance();
         Database db2 = Database.getInstance();
-
         System.out.println("es la misma instancia? " + ((db == db2) ? "SI" : "NO")); // true
 
-        // creamo una variable para eligir el tipo de usuario
-        String tipoUsuario = "admin";
+        System.out.println("--- SINGLETON TERMINADO ---\n");
+        // ========================= SINGLETON END =========================
 
-        // 1) Selecciono la fabrica según el rol
-        AbstractFactory factory = seleccionarFactory(tipoUsuario);
+        // ========================= FACTORY START =========================
+        System.out.println("\n--- PROBANDO FACTORY ---");
 
-        // 2) Creo los productos de la familia con la mimsa fabrica
-        InterfazUI ui = factory.crearUI();
+        Libro libroFisico = LogisticaLibro.crearLibro("fisico", "El Quijote", "Cervantes");
+        Libro libroDigital = LogisticaLibro.crearLibro("digital", "1984", "George Orwell");
+
+        System.out.println("Libro físico: " + libroFisico.getTitulo() + " - " + libroFisico.getAutor());
+        System.out.println("Libro digital: " + libroDigital.getTitulo() + " - " + libroDigital.getAutor());
+
+        System.out.println("--- FACTORY TERMINADO ---\n");
+        // ========================= FACTORY END =========================
+
+        // ========================= ABSTRACT FACTORY START =========================
+        System.out.println("\n--- PROBANDO ABSTRACT FACTORY ---");
+
+        String tipoUsuario = "admin"; // creamo una variable para eligir el tipo de usuario
+        AbstractFactory factory = seleccionarFactory(tipoUsuario); // 1) Selecciono la fabrica según el rol
+        InterfazUI ui = factory.crearUI();// 2) Creo los productos de la familia con la mimsa fabrica
         MetodoEnvio envio = factory.crearEnvio();
 
-        // 3) Los uso: muestro la UI y calculo logistica
-        ui.render();
+        ui.render(); // 3) Los uso: muestro la UI y calculo logistica
         System.out.println("UI seleccionada: " + ui.tipo());
 
         double peso = 1.8; // kg
@@ -46,15 +59,12 @@ public class Main {
         System.out.println("Días estimados:  " + envio.diasEstimados(distancia));
         System.out.println("Costo estimado: $" + envio.costo(peso, distancia));
 
-        // probar factory
-        Libro libroFisico = LogisticaLibro.crearLibro("fisico", "El Quijote", "Cervantes");
-        Libro libroDigital = LogisticaLibro.crearLibro("digital", "1984", "George Orwell");
+        System.out.println("--- ABSTRACT FACTORY TERMINADO ---\n");
+        // ========================= ABSTRACT FACTORY END =========================
 
-        System.out.println("Libro físico: " + libroFisico.getTitulo() + " - " + libroFisico.getAutor());
-        System.out.println("Libro digital: " + libroDigital.getTitulo() + " - " + libroDigital.getAutor());
-
-        // probar builder
+        // ========================= BUILDER START =========================
         System.out.println("\n--- PROBANDO BUILDER ---");
+
         Usuario usuario1 = Usuario.builder()
                 .nombre("Miguel Borja")
                 .email("costillares@gmail.com")
@@ -72,6 +82,9 @@ public class Main {
 
         System.out.println("Ejemplo usuario 1: " + usuario1);
         System.out.println("Ejemplo usuario 2: " + usuario2);
+
+        System.out.println("--- BUILDER TERMINADO ---\n");
+        // ========================= BUILDER END =========================
 
     }
 }
