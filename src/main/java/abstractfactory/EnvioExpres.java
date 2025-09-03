@@ -11,7 +11,7 @@ public class EnvioExpres implements MetodoEnvio{
     public int diasEstimados(int distanciakm) {
         // Regla simpls: ~800 kn/día, mínimo 1 día
         int dias = (int) Math.ceil(distanciakm / 800.0);
-        return Math.max(distanciakm, 1);
+        return Math.max(dias, 1);
     }
 
     @Override
