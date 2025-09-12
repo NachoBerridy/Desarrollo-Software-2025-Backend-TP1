@@ -75,6 +75,10 @@ public class Main {
 
         // ========================= BUILDER START =========================
         System.out.println("\n--- PROBANDO BUILDER ---");
+
+        /*
+        // CON LOMBOK
+
         Usuario usuario1 = Usuario.builder()
                 .nombre("Miguel Borja")
                 .email("costillares@gmail.com")
@@ -89,25 +93,26 @@ public class Main {
                 .direccion("Sección 'casi gol' de la Bombonera 321")
                 .fechaNacimiento("14/02/1987")
                 .build();
+          */
 
 
 
         // SIN LOMBOK
 
-//        Usuario usuario1 =  new Usuario.Builder().
-//                nombre("Miguel Borja")
-//                .email("costillares@gmail.com")
-//                .direccion("Area chica del Monumental 123")
-//                .telefono("23412341")
-//                .fechaNacimiento("26/01/1993")
-//                .build();
-//
-//        Usuario usuario2 = new Usuario.Builder()
-//                .nombre("Edinson Cavani")
-//                .email("cavani@boca.com")
-//                .direccion("Sección 'casi gol' de la Bombonera 321")
-//                .fechaNacimiento("14/02/1987")
-//                .build();
+        Usuario usuario1 =  new Usuario.Builder().
+                nombre("Miguel Borja")
+                .email("costillares@gmail.com")
+                .direccion("Area chica del Monumental 123")
+                .telefono("23412341")
+                .fechaNacimiento("26/01/1993")
+                .build();
+
+        Usuario usuario2 = new Usuario.Builder()
+                .nombre("Edinson Cavani")
+                .email("cavani@boca.com")
+                .direccion("Sección 'casi gol' de la Bombonera 321")
+                .fechaNacimiento("14/02/1987")
+                .build();
 
 
 
