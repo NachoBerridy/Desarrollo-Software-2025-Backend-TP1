@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+/*
 //USANDO LOMBOCK
 @Builder
 @Getter
@@ -11,8 +12,8 @@ import lombok.ToString;
 public class Usuario {
     private String nombre, email, direccion, telefono, fechaNacimiento;
 }
+*/
 
-/*
 //SIN LOMBOCK
 
 @ToString
@@ -40,4 +41,3 @@ public class Usuario{
         }
     }
 }
-*/
