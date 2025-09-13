@@ -1,18 +1,37 @@
 package main.java.prototype;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
 public class Prestamo implements Cloneable {
 
     private String usuario;
     private String libro;
     private String fechaInicio;
     private String fechaFin;
+
+    // Constructor
+    public Prestamo(String usuario, String libro, String fechaInicio, String fechaFin) {
+        this.usuario = usuario;
+        this.libro = libro;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+    }
+
+    // Getters
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getLibro() {
+        return libro;
+    }
+
+    // Setters
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setLibro(String libro) {
+        this.libro = libro;
+    }
 
     @Override
     // shallow copy method
