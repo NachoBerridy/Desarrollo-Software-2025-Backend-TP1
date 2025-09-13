@@ -1,11 +1,10 @@
 package main.java.factory;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-
 /*
 // Con LOMBOK
+import lombok.Getter;
+import lombok.AllArgsConstructor;
+
 @Getter
 @AllArgsConstructor
 public class LibroDigital implements Libro {
@@ -23,9 +22,11 @@ public class LibroDigital implements Libro {
         this.titulo = titulo;
         this.autor = autor;
     }
+
     public String getTitulo() {
         return titulo;
     }
+
     public String getAutor() {
         return autor;
     }
